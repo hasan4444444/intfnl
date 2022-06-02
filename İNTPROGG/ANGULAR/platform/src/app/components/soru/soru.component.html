@@ -1,0 +1,45 @@
+<h2>Dersler</h2>
+<hr>
+<button mat-fab color="primary" matTooltip="Ders Ekle">
+  <mat-icon aria-label="label">add</mat-icon>
+</button>
+<mat-table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="soruId">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> soruId
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.dersKodu}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="Soru">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Soru 
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.dersAdi}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="yanıt no">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Yanıt
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.dersKredi}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="islemler">
+    <mat-header-cell *matHeaderCellDef> İşlemler
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit">
+
+      <button mat-icon-button color="primary" matTooltip="Öğrenci Listesi">
+        <mat-icon aria-label="label">person</mat-icon>
+      </button>
+      <button mat-icon-button color="primary" matTooltip="Soruüzenle">
+        <mat-icon aria-label="label">edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" matTooltip="Soru Sil" >
+        <mat-icon aria-label="label">delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<mat-paginator [length]="kayitlar?.length" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons="true">
+</mat-paginator>

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB01Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="adminId" />
+    </Key>
+    <Property Name="adminId" Type="Int32" Nullable="false" />
+    <Property Name="adminPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="adminAdsoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ogr">
+    <Key>
+      <PropertyRef Name="ogrId" />
+    </Key>
+    <Property Name="ogrId" Type="Int32" Nullable="false" />
+    <Property Name="ogrAdsoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ogrMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ogrNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ogrSoru" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ogrSıfre" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ogrAdmin" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="soru" Relationship="Self.FK_ogr_soru" FromRole="ogr" ToRole="soru" />
+  </EntityType>
+  <EntityType Name="ogrt">
+    <Key>
+      <PropertyRef Name="ogrtId" />
+    </Key>
+    <Property Name="ogrtId" Type="Int32" Nullable="false" />
+    <Property Name="ogrtMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ogrtAdsoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ogrtNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ogrtYanıt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OgrtSıfre" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="soru" Relationship="Self.FK_ogrt_soru" FromRole="ogrt" ToRole="soru" />
+  </EntityType>
+  <EntityType Name="soru">
+    <Key>
+      <PropertyRef Name="soruNo" />
+    </Key>
+    <Property Name="soruNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="yanıtNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ogr" Relationship="Self.FK_ogr_soru" FromRole="soru" ToRole="ogr" />
+    <NavigationProperty Name="ogrt" Relationship="Self.FK_ogrt_soru" FromRole="soru" ToRole="ogrt" />
+  </EntityType>
+  <Association Name="FK_ogr_soru">
+    <End Role="soru" Type="Self.soru" Multiplicity="0..1" />
+    <End Role="ogr" Type="Self.ogr" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="soru">
+        <PropertyRef Name="soruNo" />
+      </Principal>
+      <Dependent Role="ogr">
+        <PropertyRef Name="ogrSoru" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ogrt_soru">
+    <End Role="soru" Type="Self.soru" Multiplicity="0..1" />
+    <End Role="ogrt" Type="Self.ogrt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="soru">
+        <PropertyRef Name="soruNo" />
+      </Principal>
+      <Dependent Role="ogrt">
+        <PropertyRef Name="ogrtYanıt" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB01Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="admin" EntityType="Self.admin" />
+    <EntitySet Name="ogr" EntityType="Self.ogr" />
+    <EntitySet Name="ogrt" EntityType="Self.ogrt" />
+    <EntitySet Name="soru" EntityType="Self.soru" />
+    <AssociationSet Name="FK_ogr_soru" Association="Self.FK_ogr_soru">
+      <End Role="soru" EntitySet="soru" />
+      <End Role="ogr" EntitySet="ogr" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ogrt_soru" Association="Self.FK_ogrt_soru">
+      <End Role="soru" EntitySet="soru" />
+      <End Role="ogrt" EntitySet="ogrt" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

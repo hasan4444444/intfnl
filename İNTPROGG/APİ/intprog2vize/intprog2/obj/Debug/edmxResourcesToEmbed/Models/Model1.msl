@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DB01ModelStoreContainer" CdmEntityContainer="DB01Entities">
+    <EntitySetMapping Name="admin">
+      <EntityTypeMapping TypeName="DB01Model.admin">
+        <MappingFragment StoreEntitySet="admin">
+          <ScalarProperty Name="adminId" ColumnName="adminId" />
+          <ScalarProperty Name="adminPassword" ColumnName="adminPassword" />
+          <ScalarProperty Name="adminAdsoyad" ColumnName="adminAdsoyad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ogr">
+      <EntityTypeMapping TypeName="DB01Model.ogr">
+        <MappingFragment StoreEntitySet="ogr">
+          <ScalarProperty Name="ogrId" ColumnName="ogrId" />
+          <ScalarProperty Name="ogrAdsoyad" ColumnName="ogrAdsoyad" />
+          <ScalarProperty Name="ogrMail" ColumnName="ogrMail" />
+          <ScalarProperty Name="ogrNo" ColumnName="ogrNo" />
+          <ScalarProperty Name="ogrSoru" ColumnName="ogrSoru" />
+          <ScalarProperty Name="ogrSıfre" ColumnName="ogrSıfre" />
+          <ScalarProperty Name="ogrAdmin" ColumnName="ogrAdmin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ogrt">
+      <EntityTypeMapping TypeName="DB01Model.ogrt">
+        <MappingFragment StoreEntitySet="ogrt">
+          <ScalarProperty Name="ogrtId" ColumnName="ogrtId" />
+          <ScalarProperty Name="ogrtMail" ColumnName="ogrtMail" />
+          <ScalarProperty Name="ogrtAdsoyad" ColumnName="ogrtAdsoyad" />
+          <ScalarProperty Name="ogrtNo" ColumnName="ogrtNo" />
+          <ScalarProperty Name="ogrtYanıt" ColumnName="ogrtYanıt" />
+          <ScalarProperty Name="OgrtSıfre" ColumnName="OgrtSıfre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="soru">
+      <EntityTypeMapping TypeName="DB01Model.soru">
+        <MappingFragment StoreEntitySet="soru">
+          <ScalarProperty Name="soruNo" ColumnName="soruNo" />
+          <ScalarProperty Name="yanıtNo" ColumnName="yanıtNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
